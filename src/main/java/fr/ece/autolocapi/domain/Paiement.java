@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Paiment {
+public class Paiement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +30,8 @@ public class Paiment {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private ModePaiement modePaiement;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Contrat contrat;
 }

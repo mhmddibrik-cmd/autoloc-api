@@ -9,13 +9,16 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "contrat")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Contract {
+public class Contrat {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,4 +32,7 @@ public class Contract {
 
     @Column(nullable = false)
     private boolean valide;
+
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Paiement> paiements = new ArrayList<>();
 }
