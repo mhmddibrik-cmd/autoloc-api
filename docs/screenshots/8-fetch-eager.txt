@@ -1,0 +1,17 @@
+Step 4 - Run B: Contrat.paiements with FetchType.EAGER
+Profile active: "dev"
+
+========== 1) Loading contrat ==========
+    select c1_0.id_contrat, c1_0.date_signature, c1_0.montant_total, c1_0.id_reservation, c1_0.valide
+    from contrat c1_0
+    select p1_0.contrat_id_contrat, p1_0.id_paiement, p1_0.date_paiement, p1_0.mode_paiement, p1_0.montant
+    from paiement p1_0
+    where p1_0.contrat_id_contrat=?
+========== 2) Accessing contrat.getPaiements() ==========
+========== 3) Done: 2 paiements ==========
+
+Observation: the paiement query runs immediately when the contrat is loaded (between 1 and 2),
+even before the collection is used. Accessing the collection triggers no new query.
+
+Conclusion: LAZY keeps contrat reads light (payments loaded only if needed); EAGER makes every
+contrat read more expensive. Final configuration: LAZY.
