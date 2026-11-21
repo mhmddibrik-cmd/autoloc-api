@@ -5,6 +5,8 @@ import fr.ece.autolocapi.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,10 +15,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 /**
- * Inserts demo data at startup when the database is empty.
+ * Inserts demo data at startup when the database is empty (dev profile only).
  */
 @Slf4j
 @Component
+@Profile("dev")
+@Order(1)
 @RequiredArgsConstructor
 public class DataInitializer implements CommandLineRunner {
 
