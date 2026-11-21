@@ -1,5 +1,5 @@
 package fr.ece.autolocapi.domain;
 
-public enum StatusReservation {
+public enum StatutReservation {
     EN_ATTENTE, CONFIRMEE, ANNULEE, TERMINEE
 }
